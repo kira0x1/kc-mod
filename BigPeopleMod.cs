@@ -2,6 +2,7 @@ namespace kc_mod
 {
     using Harmony;
     using System;
+    using System.Management.Instrumentation;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
@@ -43,6 +44,20 @@ namespace kc_mod
                     // Assign Private Field New Scale, 4x Original Size
                     // __instance is a Villager from Postfix Arguments
                     scaleField.SetValue(__instance, new Vector3(4f, 4f, 4f));
+                }
+            }
+
+            [HarmonyPatch(typeof(VillagerSystem))]
+            [HarmonyPatch("Init")]
+            public static class GlorpPath
+            {
+                private static void Postfix(VillagerSystem __instance)
+                {
+                    helper.Log($"Body Colors: {__instance.bodyColors.Length}");
+                    foreach (var instanceBodyColor in __instance.bodyColors)
+                    {
+                        helper.Log($"Body Color: {instanceBodyColor}");
+                    }
                 }
             }
         }
