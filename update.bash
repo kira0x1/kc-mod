@@ -1,12 +1,15 @@
 cwd=$(pwd)
-GAMEPATH=Kingdoms\ and\ Castles/
 STEAMPATH=/c/Games/Steam/steamapps/common/
-MODPATH="/c/Games/Steam/steamapps/common/Kingdoms and Castles/KingdomsAndCastles_Data/mods"
-
+GAMEPATH=Kingdoms\ and\ Castles/
 
 cd $STEAMPATH || exit
 cd "$GAMEPATH" || exit
-cd "KingdomsAndCastles_Data/mods" || exit
+cd "KingdomsAndCastles_Data/mods/KiraMod" || exit
 
+# copy/replace code to game folder
 cp $cwd/BigPeopleMod.cs .
+
+# copy/replace info.json to game folder
+cp $cwd/info.json .
+
 start .

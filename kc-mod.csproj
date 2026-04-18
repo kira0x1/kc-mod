@@ -86,6 +86,7 @@
     </ItemGroup>
     <ItemGroup>
       <Content Include="info.json" />
+      <Content Include="open.bash" />
       <Content Include="update.bash" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
