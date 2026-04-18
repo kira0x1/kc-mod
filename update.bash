@@ -7,7 +7,7 @@ cd "$GAMEPATH" || exit
 cd "KingdomsAndCastles_Data/mods/KiraMod" || exit
 
 # copy/replace code to game folder
-cp $cwd/BigPeopleMod.cs .
+cp $cwd/GlorpMod.cs .
 
 # copy/replace info.json to game folder
 cp $cwd/info.json .

@@ -1,29 +1,24 @@
+using System.Reflection;
+using Harmony;
+using UnityEngine;
+
 namespace kc_mod
 {
-    using Harmony;
-    using System;
-    using System.Management.Instrumentation;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using System.Reflection.Emit;
-    using UnityEngine;
-
     namespace KCMod
     {
-        public class BigPeopleMod : MonoBehaviour
+        public class GlorpMod : MonoBehaviour
         {
             public static KCModHelper helper;
 
             // After scene loads
             private void SceneLoaded(KCModHelper helper)
             {
+                helper.Log("test...");
             }
 
             private void Preload(KCModHelper helper)
             {
-                BigPeopleMod.helper = helper;
-                // helper.Log(helper.modPath);
+                GlorpMod.helper = helper;
 
                 var harmony = HarmonyInstance.Create("harmony");
                 harmony.PatchAll(Assembly.GetExecutingAssembly());
@@ -59,8 +54,8 @@ namespace kc_mod
                         new Color(0.639f, 0.96f, 0.73f, 1.0f),
                         new Color(0.25f, 0.96f, 0.486f, 1.0f)
                     };
-                    
-                    helper.Log("\n--VERSION: 1.0--");
+
+                    helper.Log("\n--VERSION: 1.1--");
 
                     __instance.bodyColors = glorpColors;
 
