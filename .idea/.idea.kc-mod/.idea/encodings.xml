@@ -3,5 +3,6 @@
   <component name="Encoding" addBOMForNewFiles="with BOM under Windows, with no BOM otherwise">
     <file url="file://$PROJECT_DIR$/run.bash" charset="US-ASCII" />
     <file url="file://$PROJECT_DIR$/update.bash" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/Scripts/clearlog.bash" charset="US-ASCII" />
   </component>
 </project>
