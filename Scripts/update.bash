@@ -1,15 +1,13 @@
-cwd=$(pwd)
 STEAMPATH=/c/Games/Steam/steamapps/common/
 GAMEPATH=Kingdoms\ and\ Castles/
-
-cd $STEAMPATH || exit
-cd "$GAMEPATH" || exit
-cd "KingdomsAndCastles_Data/mods/KiraMod" || exit
+FULLPATH="${STEAMPATH}${GAMEPATH}KingdomsAndCastles_Data/mods/KiraMod"
 
 # copy/replace code to game folder
-cp $cwd/GlorpMod.cs .
+cp ../GlorpMod.cs "${FULLPATH}/GlorpMod.cs"
 
 # copy/replace info.json to game folder
-cp $cwd/info.json .
+cp ../info.json "${FULLPATH}/info.json"
+
+cd "$FULLPATH" || exit
 
 start .
