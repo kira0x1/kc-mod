@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Reflection;
+using Assets.Code;
 using Harmony;
 using UnityEngine;
 
@@ -13,7 +15,6 @@ namespace kc_mod
             // After scene loads
             private void SceneLoaded(KCModHelper helper)
             {
-                helper.Log("test...");
             }
 
             private void Preload(KCModHelper helper)
@@ -24,27 +25,40 @@ namespace kc_mod
                 harmony.PatchAll(Assembly.GetExecutingAssembly());
             }
 
-            // [HarmonyPatch(typeof(Villager))]
-            // [HarmonyPatch("Init")]
-            // public static class BigVillagerPatch
-            // {
-            //     //A function to run after target function invocation
-            //     private static void Postfix(Villager __instance)
-            //     {
-            //         // Run arbitrary code
+            [HarmonyPatch(typeof(Keep))]
+            [HarmonyPatch("OnInit")]
+            public static class KeepPatch
+            {
+                private static void Postfix(Keep __instance)
+                {
+                    __instance.woodStack.Add(100);
+                    __instance.appleStack.Add(15);
+                    __instance.stoneStack.Add(30);
+                }
+            }
 
-            //         // Get Private Field Called 'fullScale' with Reflection
-            //         FieldInfo scaleField = typeof(Villager).GetField("fullScale", BindingFlags.Instance | BindingFlags.NonPublic);
+            [HarmonyPatch(typeof(Villager))]
+            [HarmonyPatch("Init")]
+            public static class BigVillagerPatch
+            {
+                //A function to run after target function invocation
+                private static void Postfix(Villager __instance)
+                {
+                    // Run arbitrary code
 
-            //         // Assign Private Field New Scale, 4x Original Size
-            //         // __instance is a Villager from Postfix Arguments
-            //         scaleField.SetValue(__instance, new Vector3(4f, 4f, 4f));
-            //     }
-            // }
+                    // Get Private Field Called 'fullScale' with Reflection
+                    FieldInfo scaleField = typeof(Villager).GetField("fullScale", BindingFlags.Instance | BindingFlags.NonPublic);
+
+                    // Assign Private Field New Scale, 4x Original Size
+                    // __instance is a Villager from Postfix Arguments
+                    scaleField.SetValue(__instance, new Vector3(2.5f, 4f, 2.5f));
+                }
+            }
+
 
             [HarmonyPatch(typeof(VillagerSystem))]
             [HarmonyPatch("Start")]
-            public static class GlorpPath
+            public static class GlorpPatch
             {
                 private static void Postfix(VillagerSystem __instance)
                 {
@@ -55,15 +69,9 @@ namespace kc_mod
                         new Color(0.25f, 0.96f, 0.486f, 1.0f)
                     };
 
-                    helper.Log("\n--VERSION: 1.1--");
+                    helper.Log("\n--VERSION: 1.5--");
 
                     __instance.bodyColors = glorpColors;
-
-                    helper.Log($"Body Colors: {__instance.bodyColors.Length}");
-                    foreach (var instanceBodyColor in __instance.bodyColors)
-                    {
-                        helper.Log($"Body Color: {instanceBodyColor}");
-                    }
                 }
             }
         }
