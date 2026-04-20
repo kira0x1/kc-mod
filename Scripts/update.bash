@@ -4,6 +4,7 @@ FULLPATH="${STEAMPATH}${GAMEPATH}KingdomsAndCastles_Data/mods/KiraMod"
 
 # copy/replace code to game folder
 cp ../GlorpMod.cs "${FULLPATH}/GlorpMod.cs"
+#cp ../*.cs "${FULLPATH}/"
 
 # copy/replace info.json to game folder
 cp ../info.json "${FULLPATH}/info.json"
