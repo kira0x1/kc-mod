@@ -56,29 +56,33 @@ namespace kc_mod
                 // Run arbitrary code
 
                 // Get Private Field Called 'fullScale' with Reflection
-                FieldInfo scaleField = typeof(Villager).GetField("fullScale", BindingFlags.Instance | BindingFlags.NonPublic);
+                FieldInfo scaleField =
+                    typeof(Villager).GetField("fullScale", BindingFlags.Instance | BindingFlags.NonPublic);
 
                 // Assign Private Field New Scale, 4x Original Size
                 // __instance is a Villager from Postfix Arguments
                 scaleField.SetValue(__instance, new Vector3(2.5f, 4f, 2.5f));
 
-                GameObject[] root = SceneManager.GetActiveScene().GetRootGameObjects();
-                helper.Log("\n\nroot objects");
-                foreach (var o in root)
-                {
-                    helper.Log(o.name);
-                }
 
-                var person = GameObject.Find("person");
+                // GameObject[] root = SceneManager.GetActiveScene().GetRootGameObjects();
+                // helper.Log("\n\nroot objects");
+                // foreach (var o in root)
+                // {
+                //     helper.Log(o.name);
+                // }
+            }
+        }
 
-                if (person != null)
-                {
-                    helper.Log($"person found: {person.name}");
-                }
-                else
-                {
-                    helper.Log("could not find person");
-                }
+        [HarmonyPatch(typeof(GameUI))]
+        [HarmonyPatch("SelectPerson")]
+        public static class GameUIPatch
+        {
+            private static void Prefix(GameUI __instance, ref Villager villager)
+            {
+                helper.Log($"selected villager: {villager.name}");
+                Villager v = villager;
+                v.body.localScale = new Vector3(5f, 5f, 5f);
+                villager = v;
             }
         }
 
