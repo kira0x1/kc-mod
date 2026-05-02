@@ -9,7 +9,7 @@ cp ../GlorpMod.cs "${FULLPATH}/GlorpMod.cs"
 # copy/replace info.json to game folder
 cp ../info.json "${FULLPATH}/info.json"
 
-./clearlog.bash
+./section_log.bash
 
 cd "$FULLPATH" || exit
 start .

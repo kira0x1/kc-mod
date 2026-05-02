@@ -63,7 +63,6 @@ namespace kc_mod
                 // __instance is a Villager from Postfix Arguments
                 scaleField.SetValue(__instance, new Vector3(2.5f, 4f, 2.5f));
 
-
                 // GameObject[] root = SceneManager.GetActiveScene().GetRootGameObjects();
                 // helper.Log("\n\nroot objects");
                 // foreach (var o in root)
@@ -73,18 +72,18 @@ namespace kc_mod
             }
         }
 
-        [HarmonyPatch(typeof(GameUI))]
-        [HarmonyPatch("SelectPerson")]
-        public static class GameUIPatch
-        {
-            private static void Prefix(GameUI __instance, ref Villager villager)
-            {
-                helper.Log($"selected villager: {villager.name}");
-                Villager v = villager;
-                v.body.localScale = new Vector3(5f, 5f, 5f);
-                villager = v;
-            }
-        }
+        // [HarmonyPatch(typeof(GameUI))]
+        // [HarmonyPatch("SelectPerson")]
+        // public static class GameUIPatch
+        // {
+        //     private static void Prefix(GameUI __instance, ref Villager villager)
+        //     {
+        //         helper.Log($"selected villager: {villager.name}");
+        //         Villager v = villager;
+        //         v.body.localScale = new Vector3(5f, 5f, 5f);
+        //         villager = v;
+        //     }
+        // }
 
         [HarmonyPatch(typeof(VillagerSystem))]
         [HarmonyPatch("Start")]

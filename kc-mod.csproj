@@ -90,7 +90,8 @@
     </ItemGroup>
     <ItemGroup>
       <Content Include="info.json" />
-      <Content Include="Scripts\clearlog.bash" />
+      <Content Include="Scripts\roll_logs.bash" />
+      <Content Include="Scripts\section_log.bash" />
       <Content Include="Scripts\open.bash" />
       <Content Include="Scripts\run.bash" />
       <Content Include="Scripts\update.bash" />
